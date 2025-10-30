@@ -23,7 +23,7 @@ public class LottoController {
         this.lottoService = new LottoService();
     }
 
-    public void run() {
+    public void runLotto() {
         Money money = readMoney();
         List<Lotto> lottos = lottoService.purchase(money);
 
