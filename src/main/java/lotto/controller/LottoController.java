@@ -1,51 +1,48 @@
 package lotto.controller;
 
+import java.util.List;
+
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
-import lotto.service.LottoMachine;
 import lotto.service.LottoResultCalculator;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoMachine lottoMachine;
+    private final LottoService lottoService;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.lottoMachine = new LottoMachine();
+        this.lottoService = new LottoService();
     }
 
     public void run() {
-        List<Lotto> lottos = purchaseLottos();
-        int purchaseAmount = calculatePurchaseAmount(lottos);
+        Money money = readMoney();
+        List<Lotto> lottos = lottoService.purchase(money);
 
         printPurchasedLottos(lottos);
 
         WinningNumbers winningNumbers = readWinningNumbers();
         BonusNumber bonusNumber = readBonusNumber(winningNumbers);
 
-        printResult(lottos, winningNumbers, bonusNumber, purchaseAmount);
+        printResult(lottos, winningNumbers, bonusNumber, money);
     }
 
-    private List<Lotto> purchaseLottos() {
+    private Money readMoney() {
         while (true) {
             try {
                 int amount = inputView.readPurchaseAmount();
-                return lottoMachine.purchase(amount);
+                return new Money(amount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private int calculatePurchaseAmount(List<Lotto> lottos) {
-        return lottos.size() * 1000;
     }
 
     private void printPurchasedLottos(List<Lotto> lottos) {
@@ -74,8 +71,8 @@ public class LottoController {
     }
 
     private void printResult(List<Lotto> lottos, WinningNumbers winningNumbers,
-                             BonusNumber bonusNumber, int purchaseAmount) {
+                             BonusNumber bonusNumber, Money money) {
         LottoResultCalculator result = new LottoResultCalculator(lottos, winningNumbers, bonusNumber);
-        outputView.printStatistics(result, purchaseAmount);
+        outputView.printStatistics(result, money.getAmount());
     }
 }
