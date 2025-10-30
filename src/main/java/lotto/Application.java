@@ -7,6 +7,14 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        try {
+            run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void run() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         LottoMachine lottoMachine = new LottoMachine();
