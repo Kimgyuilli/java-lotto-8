@@ -1,13 +1,18 @@
-package lotto;
+package lotto.service;
+
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumbers;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class LottoResult {
+public class LottoResultCalculator {
     private final Map<Rank, Integer> result;
 
-    public LottoResult(List<Lotto> lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottoResultCalculator(List<Lotto> lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         this.result = new EnumMap<>(Rank.class);
         initializeResult();
         calculateResult(lottos, winningNumbers, bonusNumber);
