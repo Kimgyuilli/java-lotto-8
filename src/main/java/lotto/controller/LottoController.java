@@ -6,7 +6,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
-import lotto.service.LottoResultCalculator;
+import lotto.domain.LottoResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -72,7 +72,7 @@ public class LottoController {
 
     private void printResult(List<Lotto> lottos, WinningNumbers winningNumbers,
                              BonusNumber bonusNumber, Money money) {
-        LottoResultCalculator result = new LottoResultCalculator(lottos, winningNumbers, bonusNumber);
+        LottoResult result = new LottoResult(lottos, winningNumbers, bonusNumber);
         outputView.printStatistics(result, money.getAmount());
     }
 }

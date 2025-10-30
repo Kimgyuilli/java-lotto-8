@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
-import lotto.service.LottoResultCalculator;
+import lotto.domain.LottoResult;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -29,7 +29,7 @@ public class OutputView {
         System.out.println(sortedNumbers);
     }
 
-    public void printStatistics(LottoResultCalculator result, int purchaseAmount) {
+    public void printStatistics(LottoResult result, int purchaseAmount) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -37,7 +37,7 @@ public class OutputView {
         printProfitRate(result, purchaseAmount);
     }
 
-    private void printRankStatistics(LottoResultCalculator result) {
+    private void printRankStatistics(LottoResult result) {
         printRank(Rank.FIFTH, result);
         printRank(Rank.FOURTH, result);
         printRank(Rank.THIRD, result);
@@ -45,12 +45,12 @@ public class OutputView {
         printRank(Rank.FIRST, result);
     }
 
-    private void printRank(Rank rank, LottoResultCalculator result) {
+    private void printRank(Rank rank, LottoResult result) {
         System.out.println(rank.getDescription() + " (" + MONEY_FORMAT.format(rank.getPrize()) + "원) - "
                 + result.getCount(rank) + "개");
     }
 
-    private void printProfitRate(LottoResultCalculator result, int purchaseAmount) {
+    private void printProfitRate(LottoResult result, int purchaseAmount) {
         double profitRate = result.calculateProfitRate(purchaseAmount);
         System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }
