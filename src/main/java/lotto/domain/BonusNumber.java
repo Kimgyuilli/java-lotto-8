@@ -10,17 +10,9 @@ public class BonusNumber {
 
     private final int number;
 
-    public BonusNumber(String input, List<Integer> winningNumbers) {
-        this.number = parseNumber(input);
+    public BonusNumber(int number, List<Integer> winningNumbers) {
+        this.number = number;
         validate(winningNumbers);
-    }
-
-    private int parseNumber(String input) {
-        try {
-            return Integer.parseInt(input.trim());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_NOT_A_NUMBER.getMessage());
-        }
     }
 
     private void validate(List<Integer> winningNumbers) {

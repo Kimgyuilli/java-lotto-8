@@ -1,5 +1,9 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ErrorCode;
 
@@ -11,26 +15,39 @@ public class InputView {
     public int readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         String input = Console.readLine();
-        return parsePurchaseAmount(input);
+        return parseInteger(input, ErrorCode.PURCHASE_AMOUNT_NOT_A_NUMBER);
     }
 
-    private int parsePurchaseAmount(String input) {
+    public List<Integer> readWinningNumbers() {
+        System.out.println();
+        System.out.println(WINNING_NUMBERS_MESSAGE);
+        String input = Console.readLine();
+        return parseWinningNumbers(input);
+    }
+
+    public int readBonusNumber() {
+        System.out.println();
+        System.out.println(BONUS_NUMBER_MESSAGE);
+        String input = Console.readLine();
+        return parseInteger(input, ErrorCode.BONUS_NUMBER_NOT_A_NUMBER);
+    }
+
+    private int parseInteger(String input, ErrorCode errorCode) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_NOT_A_NUMBER.getMessage());
+            throw new IllegalArgumentException(errorCode.getMessage());
         }
     }
 
-    public String readWinningNumbers() {
-        System.out.println();
-        System.out.println(WINNING_NUMBERS_MESSAGE);
-        return Console.readLine();
-    }
-
-    public String readBonusNumber() {
-        System.out.println();
-        System.out.println(BONUS_NUMBER_MESSAGE);
-        return Console.readLine();
+    private List<Integer> parseWinningNumbers(String input) {
+        try {
+            return Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.WINNING_NUMBERS_NOT_A_NUMBER.getMessage());
+        }
     }
 }
