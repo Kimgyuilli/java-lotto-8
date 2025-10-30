@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class LottoResult {
     private final Map<Rank, Integer> rankCounts;
@@ -19,10 +20,8 @@ public class LottoResult {
     }
 
     private long calculateTotalPrize() {
-        long total = 0;
-        for (Rank rank : Rank.values()) {
-            total += (long) rank.getPrize() * rankCounts.get(rank);
-        }
-        return total;
+        return Stream.of(Rank.values())
+            .mapToLong(rank -> (long) rank.getPrize() * rankCounts.get(rank))
+            .sum();
     }
 }
