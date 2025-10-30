@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lotto.exception.ErrorCode;
+
 public class WinningNumbers {
     private final List<Integer> numbers;
 
@@ -19,7 +21,7 @@ public class WinningNumbers {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorCode.WINNING_NUMBERS_NOT_A_NUMBER.getMessage());
         }
     }
 
