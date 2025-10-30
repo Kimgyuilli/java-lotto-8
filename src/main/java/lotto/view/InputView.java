@@ -15,7 +15,7 @@ public class InputView {
     public int readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         String input = Console.readLine();
-        return parseInteger(input, ErrorCode.PURCHASE_AMOUNT_NOT_A_NUMBER);
+        return parseInteger(input, ErrorCode.PURCHASE_AMOUNT_INVALID_FORMAT);
     }
 
     public List<Integer> readWinningNumbers() {
@@ -29,7 +29,7 @@ public class InputView {
         System.out.println();
         System.out.println(BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
-        return parseInteger(input, ErrorCode.BONUS_NUMBER_NOT_A_NUMBER);
+        return parseInteger(input, ErrorCode.BONUS_NUMBER_INVALID_FORMAT);
     }
 
     private int parseInteger(String input, ErrorCode errorCode) {
@@ -47,7 +47,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.WINNING_NUMBERS_NOT_A_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.WINNING_NUMBERS_INVALID_FORMAT.getMessage());
         }
     }
 }
