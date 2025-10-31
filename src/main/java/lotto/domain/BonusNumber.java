@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
+import lotto.constants.LottoConstants;
 import lotto.exception.ErrorCode;
 
 public class BonusNumber {

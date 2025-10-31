@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.LottoConstants;
 import lotto.exception.ErrorCode;
 
 public class Money {
