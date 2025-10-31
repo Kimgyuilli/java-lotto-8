@@ -52,14 +52,14 @@ class RankTest {
 	}
 
 	@Test
-	void 세개_미만_일치_시_NONE을_반환한다() {
-		assertThat(Rank.determineBy(0, false)).isEqualTo(Rank.NONE);
-		assertThat(Rank.determineBy(1, false)).isEqualTo(Rank.NONE);
-		assertThat(Rank.determineBy(2, false)).isEqualTo(Rank.NONE);
+	void 세개_미만_일치_시_미당첨을_반환한다() {
+		assertThat(Rank.determineBy(0, false)).isEqualTo(Rank.NO_WIN);
+		assertThat(Rank.determineBy(1, false)).isEqualTo(Rank.NO_WIN);
+		assertThat(Rank.determineBy(2, false)).isEqualTo(Rank.NO_WIN);
 	}
 
 	@Test
-	void NONE_등수의_상금은_0원이다() {
+	void 미당첨_등수의_상금은_0원이다() {
 		Rank rank = Rank.determineBy(2, false);
 
 		assertThat(rank.getPrize()).isEqualTo(0);

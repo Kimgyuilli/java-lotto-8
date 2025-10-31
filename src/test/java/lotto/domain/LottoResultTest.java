@@ -21,7 +21,7 @@ class LottoResultTest {
 		assertThat(result.getCount(Rank.THIRD)).isEqualTo(1);
 		assertThat(result.getCount(Rank.FOURTH)).isEqualTo(1);
 		assertThat(result.getCount(Rank.FIFTH)).isEqualTo(1);
-		assertThat(result.getCount(Rank.NONE)).isEqualTo(1);
+		assertThat(result.getCount(Rank.NO_WIN)).isEqualTo(1);
 	}
 
 	@Test
@@ -83,7 +83,7 @@ class LottoResultTest {
 		rankCounts.put(Rank.THIRD, third);
 		rankCounts.put(Rank.FOURTH, fourth);
 		rankCounts.put(Rank.FIFTH, fifth);
-		rankCounts.put(Rank.NONE, none);
+		rankCounts.put(Rank.NO_WIN, none);
 		return rankCounts;
 	}
 }

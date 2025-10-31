@@ -8,7 +8,7 @@ public enum Rank {
 	THIRD(5, false, 1_500_000, "5개 일치"),
 	FOURTH(4, false, 50_000, "4개 일치"),
 	FIFTH(3, false, 5_000, "3개 일치"),
-	NONE(0, false, 0, "");
+	NO_WIN(0, false, 0, "미당첨");
 
 	private final int matchCount;
 	private final boolean bonusMatch;
@@ -26,7 +26,7 @@ public enum Rank {
 		return Arrays.stream(values())
 			.filter(rank -> rank.matches(matchCount, bonusMatch))
 			.findFirst()
-			.orElse(NONE);
+			.orElse(NO_WIN);
 	}
 
 	private boolean matches(int matchCount, boolean bonusMatch) {

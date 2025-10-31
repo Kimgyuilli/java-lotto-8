@@ -22,7 +22,7 @@ class LottoResultCalculatorTest {
 
 		assertThat(result.getCount(Rank.FIRST)).isEqualTo(1);
 		assertThat(result.getCount(Rank.SECOND)).isEqualTo(0);
-		assertThat(result.getCount(Rank.NONE)).isEqualTo(0);
+		assertThat(result.getCount(Rank.NO_WIN)).isEqualTo(0);
 	}
 
 	@Test
@@ -82,7 +82,7 @@ class LottoResultCalculatorTest {
 
 		assertThat(result.getCount(Rank.FIFTH)).isEqualTo(1);
 		assertThat(result.getCount(Rank.FOURTH)).isEqualTo(0);
-		assertThat(result.getCount(Rank.NONE)).isEqualTo(0);
+		assertThat(result.getCount(Rank.NO_WIN)).isEqualTo(0);
 	}
 
 	@Test
@@ -95,7 +95,7 @@ class LottoResultCalculatorTest {
 
 		LottoResult result = calculator.calculate(lottos, winningNumbers, bonusNumber);
 
-		assertThat(result.getCount(Rank.NONE)).isEqualTo(1);
+		assertThat(result.getCount(Rank.NO_WIN)).isEqualTo(1);
 		assertThat(result.getCount(Rank.FIFTH)).isEqualTo(0);
 	}
 
@@ -119,6 +119,6 @@ class LottoResultCalculatorTest {
 		assertThat(result.getCount(Rank.THIRD)).isEqualTo(1);
 		assertThat(result.getCount(Rank.FOURTH)).isEqualTo(1);
 		assertThat(result.getCount(Rank.FIFTH)).isEqualTo(1);
-		assertThat(result.getCount(Rank.NONE)).isEqualTo(1);
+		assertThat(result.getCount(Rank.NO_WIN)).isEqualTo(1);
 	}
 }
