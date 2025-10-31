@@ -45,4 +45,19 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    void getNumbers는_불변_리스트를_반환한다() {
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> numbers = winningNumbers.getNumbers();
+
+        assertThatThrownBy(() -> numbers.add(7))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @Test
+    void null_입력_시_예외가_발생한다() {
+        assertThatThrownBy(() -> new WinningNumbers(null))
+                .isInstanceOf(NullPointerException.class);
+    }
 }

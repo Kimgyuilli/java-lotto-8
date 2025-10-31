@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.EnumMap;
 import java.util.Map;
 
+import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
@@ -50,7 +51,7 @@ class LottoResultTest {
 
         double profitRate = result.calculateProfitRate(14000);
 
-        assertThat(profitRate).isCloseTo(10714.29, offset(0.01)); // 1500000 / 14000 * 100
+        assertThat(profitRate).isCloseTo(10714.29, Offset.offset(0.01)); // 1500000 / 14000 * 100
     }
 
     @Test
@@ -84,9 +85,5 @@ class LottoResultTest {
         rankCounts.put(Rank.FIFTH, fifth);
         rankCounts.put(Rank.NONE, none);
         return rankCounts;
-    }
-
-    private org.assertj.core.data.Offset<Double> offset(double value) {
-        return org.assertj.core.data.Offset.offset(value);
     }
 }

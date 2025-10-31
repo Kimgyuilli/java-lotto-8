@@ -43,4 +43,32 @@ class LottoServiceTest {
             assertThat(lotto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
         }
     }
+
+    @Test
+    void 생성된_로또_번호는_중복되지_않는다() {
+        Money money = new Money(10000);
+
+        List<Lotto> lottos = lottoService.purchase(money);
+
+        for (Lotto lotto : lottos) {
+            assertThat(lotto.getNumbers())
+                    .hasSize(6)
+                    .doesNotHaveDuplicates();
+        }
+    }
+
+    @Test
+    void 대량_로또_구매도_정상_동작한다() {
+        Money money = new Money(100000);
+
+        List<Lotto> lottos = lottoService.purchase(money);
+
+        assertThat(lottos).hasSize(100);
+        for (Lotto lotto : lottos) {
+            assertThat(lotto.getNumbers())
+                    .hasSize(6)
+                    .doesNotHaveDuplicates()
+                    .allMatch(number -> number >= 1 && number <= 45);
+        }
+    }
 }
