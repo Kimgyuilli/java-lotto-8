@@ -5,9 +5,6 @@ import java.util.List;
 import lotto.exception.ErrorCode;
 
 public class BonusNumber {
-	private static final int MIN_NUMBER = 1;
-	private static final int MAX_NUMBER = 45;
-
 	private final int number;
 
 	public BonusNumber(int number, List<Integer> winningNumbers) {
@@ -21,7 +18,7 @@ public class BonusNumber {
 	}
 
 	private void validateRange() {
-		if (number < MIN_NUMBER || number > MAX_NUMBER) {
+		if (number < LottoConstants.MIN_NUMBER || number > LottoConstants.MAX_NUMBER) {
 			throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_RANGE_INVALID.getMessage());
 		}
 	}
