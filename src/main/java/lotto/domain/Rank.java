@@ -22,7 +22,7 @@ public enum Rank {
 		this.description = description;
 	}
 
-	public static Rank valueOf(int matchCount, boolean bonusMatch) {
+	public static Rank determineBy(int matchCount, boolean bonusMatch) {
 		return Arrays.stream(values())
 			.filter(rank -> rank.matches(matchCount, bonusMatch))
 			.findFirst()

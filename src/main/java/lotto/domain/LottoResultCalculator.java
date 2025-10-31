@@ -30,7 +30,7 @@ public class LottoResultCalculator {
 	private Rank determineRank(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
 		int matchCount = lotto.countMatches(winningNumbers.getNumbers());
 		boolean bonusMatch = lotto.contains(bonusNumber.getNumber());
-		return Rank.valueOf(matchCount, bonusMatch);
+		return Rank.determineBy(matchCount, bonusMatch);
 	}
 
 	private void increaseCount(Map<Rank, Integer> rankCounts, Rank rank) {
